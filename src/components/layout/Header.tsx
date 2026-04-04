@@ -26,7 +26,7 @@ const Header = () => {
             UNITED GROUPS — Authorized Dealer of BOSCH & STIHL
           </span>
           <a
-            href="tel:+910000000000"
+            href="tel:+918912562737"
             className="hidden md:flex items-center gap-1.5 hover:opacity-80 transition-opacity"
           >
             <Phone className="w-3.5 h-3.5" />
@@ -65,7 +65,7 @@ const Header = () => {
 
         <div className="flex items-center gap-2">
           <a
-            href="https://wa.me/910000000000"
+            href="https://wa.me/918912562737"
             target="_blank"
             rel="noopener noreferrer"
           >

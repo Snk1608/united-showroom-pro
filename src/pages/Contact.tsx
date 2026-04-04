@@ -36,10 +36,10 @@ const Contact = () => {
               ))}
 
               <div className="flex gap-3 pt-4">
-                <a href="https://wa.me/910000000000" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/918912562737" target="_blank" rel="noopener noreferrer">
                   <Button variant="whatsapp">Chat on WhatsApp</Button>
                 </a>
-                <a href="tel:+910000000000">
+                <a href="tel:+918912562737">
                   <Button variant="outline">Call Now</Button>
                 </a>
               </div>
