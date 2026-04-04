@@ -66,7 +66,7 @@ const Index = () => {
             <Link to="/enquiry">
               <Button size="lg">Send an Enquiry</Button>
             </Link>
-            <a href="https://wa.me/910000000000" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/918912562737" target="_blank" rel="noopener noreferrer">
               <Button variant="whatsapp" size="lg">Chat on WhatsApp</Button>
             </a>
           </div>
