@@ -19,8 +19,8 @@ const Contact = () => {
               <h2 className="font-heading text-2xl font-bold text-foreground">Get in Touch</h2>
 
               {[
-                { icon: MapPin, title: "Visit Us", content: "123 Industrial Area, Main Road\nCity, State - 000000" },
-                { icon: Phone, title: "Call Us", content: "+91 00000 00000\n+91 00000 00001" },
+                { icon: MapPin, title: "Visit Us", content: "Prospect House, Opp. Old Fire Service Station\nSuryabagh, Visakhapatnam-530020\nAndhra Pradesh" },
+                { icon: Phone, title: "Call Us", content: "+91 89125 62737" },
                 { icon: Mail, title: "Email Us", content: "info@unitedgroups.com\nsales@unitedgroups.com" },
                 { icon: Clock, title: "Business Hours", content: "Mon - Sat: 9:00 AM - 7:00 PM\nSunday: Closed" },
               ].map((item) => (
