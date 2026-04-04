@@ -1,0 +1,68 @@
+import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+const Contact = () => {
+  return (
+    <div>
+      <section className="bg-hero-gradient py-12 md:py-16">
+        <div className="container text-center">
+          <h1 className="font-heading text-4xl md:text-5xl font-bold text-primary-foreground mb-3">Contact Us</h1>
+          <p className="text-primary-foreground/80">Visit our showroom or get in touch</p>
+        </div>
+      </section>
+
+      <section className="py-16 bg-background">
+        <div className="container">
+          <div className="grid md:grid-cols-2 gap-10">
+            {/* Info */}
+            <div className="space-y-6">
+              <h2 className="font-heading text-2xl font-bold text-foreground">Get in Touch</h2>
+
+              {[
+                { icon: MapPin, title: "Visit Us", content: "123 Industrial Area, Main Road\nCity, State - 000000" },
+                { icon: Phone, title: "Call Us", content: "+91 00000 00000\n+91 00000 00001" },
+                { icon: Mail, title: "Email Us", content: "info@unitedgroups.com\nsales@unitedgroups.com" },
+                { icon: Clock, title: "Business Hours", content: "Mon - Sat: 9:00 AM - 7:00 PM\nSunday: Closed" },
+              ].map((item) => (
+                <div key={item.title} className="flex gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                    <item.icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-heading font-semibold text-foreground">{item.title}</h3>
+                    <p className="text-muted-foreground text-sm whitespace-pre-line">{item.content}</p>
+                  </div>
+                </div>
+              ))}
+
+              <div className="flex gap-3 pt-4">
+                <a href="https://wa.me/910000000000" target="_blank" rel="noopener noreferrer">
+                  <Button variant="whatsapp">Chat on WhatsApp</Button>
+                </a>
+                <a href="tel:+910000000000">
+                  <Button variant="outline">Call Now</Button>
+                </a>
+              </div>
+            </div>
+
+            {/* Map */}
+            <div className="rounded-xl overflow-hidden border border-border h-[400px]">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.5965!2d77.5946!3d12.9716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDU4JzE3LjgiTiA3N8KwMzUnNDAuNiJF!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="United Groups Location"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default Contact;
