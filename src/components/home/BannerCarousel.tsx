@@ -58,16 +58,16 @@ const BannerCarousel = () => {
               alt={banner.title}
               className="w-full h-[280px] sm:h-[360px] md:h-[420px] object-cover"
             />
-            <div className="absolute inset-0 bg-foreground/40 flex items-center">
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-foreground/80 via-foreground/40 to-transparent pt-16 pb-10">
               <div className="container">
-                <div className="max-w-lg space-y-3">
-                  <h2 className="font-heading text-3xl md:text-5xl font-bold text-primary-foreground drop-shadow-lg">
+                <div className="max-w-lg space-y-2">
+                  <h2 className="font-heading text-2xl md:text-4xl font-bold text-primary-foreground drop-shadow-lg">
                     {banner.title}
                   </h2>
                   <p className="text-primary-foreground/90 text-sm md:text-base drop-shadow">
                     {banner.description}
                   </p>
-                  <Button variant="hero" size="lg">
+                  <Button variant="hero" size="sm">
                     {banner.cta}
                   </Button>
                 </div>
