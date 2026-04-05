@@ -23,13 +23,17 @@ const BrandStrip = () => {
         </p>
         <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14">
           {brands.map((brand) => (
-            <img
-              key={brand.name}
-              src={brand.logo}
-              alt={`${brand.name} logo`}
-              loading="lazy"
-              className="h-12 md:h-16 w-auto object-contain grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300"
-            />
+            <div key={brand.name} className="flex flex-col items-center gap-2 group">
+              <img
+                src={brand.logo}
+                alt={`${brand.name} logo`}
+                loading="lazy"
+                className="h-12 md:h-16 w-auto object-contain grayscale group-hover:grayscale-0 opacity-70 group-hover:opacity-100 transition-all duration-300"
+              />
+              <span className="text-xs font-heading font-semibold text-muted-foreground group-hover:text-foreground transition-colors">
+                {brand.name}
+              </span>
+            </div>
           ))}
         </div>
       </div>

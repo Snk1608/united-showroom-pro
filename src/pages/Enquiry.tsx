@@ -1,19 +1,25 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const Enquiry = () => {
   const [form, setForm] = useState({ name: "", phone: "", email: "", product: "", message: "" });
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
+    try {
+      const { error } = await supabase.from("enquiries").insert(form);
+      if (error) throw error;
       toast.success("Enquiry submitted successfully! We'll get back to you soon.");
       setForm({ name: "", phone: "", email: "", product: "", message: "" });
+    } catch (err: any) {
+      toast.error(err.message || "Failed to submit enquiry");
+    } finally {
       setLoading(false);
-    }, 1000);
+    }
   };
 
   return (

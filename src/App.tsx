@@ -14,6 +14,8 @@ import Enquiry from "./pages/Enquiry";
 import Contact from "./pages/Contact";
 import Clients from "./pages/Clients";
 import NotFound from "./pages/NotFound";
+import Admin from "./pages/Admin";
+import AdminLogin from "./pages/AdminLogin";
 
 const queryClient = new QueryClient();
 
@@ -23,23 +25,32 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <div className="flex flex-col min-h-screen">
-          <Header />
-          <main className="flex-1">
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/brands" element={<Brands />} />
-              <Route path="/offers" element={<Offers />} />
-              <Route path="/enquiry" element={<Enquiry />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/clients" element={<Clients />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
+        <Routes>
+          {/* Admin routes without Header/Footer */}
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin" element={<Admin />} />
+          
+          {/* Public routes with Header/Footer */}
+          <Route path="*" element={
+            <div className="flex flex-col min-h-screen">
+              <Header />
+              <main className="flex-1">
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/products" element={<Products />} />
+                  <Route path="/brands" element={<Brands />} />
+                  <Route path="/offers" element={<Offers />} />
+                  <Route path="/enquiry" element={<Enquiry />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/clients" element={<Clients />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </main>
+              <Footer />
+            </div>
+          } />
+        </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
