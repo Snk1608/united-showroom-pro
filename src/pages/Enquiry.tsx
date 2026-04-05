@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const Enquiry = () => {
   const [form, setForm] = useState({ name: "", phone: "", email: "", product: "", message: "" });
