@@ -16,6 +16,9 @@ import Clients from "./pages/Clients";
 import NotFound from "./pages/NotFound";
 import Admin from "./pages/Admin";
 import AdminLogin from "./pages/AdminLogin";
+import AdminSignup from "./pages/AdminSignup";
+import AdminForgotPassword from "./pages/AdminForgotPassword";
+import AdminResetPassword from "./pages/AdminResetPassword";
 
 const queryClient = new QueryClient();
 
