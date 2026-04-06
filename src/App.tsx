@@ -16,6 +16,9 @@ import Clients from "./pages/Clients";
 import NotFound from "./pages/NotFound";
 import Admin from "./pages/Admin";
 import AdminLogin from "./pages/AdminLogin";
+import AdminSignup from "./pages/AdminSignup";
+import AdminForgotPassword from "./pages/AdminForgotPassword";
+import AdminResetPassword from "./pages/AdminResetPassword";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +31,9 @@ const App = () => (
         <Routes>
           {/* Admin routes without Header/Footer */}
           <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin/signup" element={<AdminSignup />} />
+          <Route path="/admin/forgot-password" element={<AdminForgotPassword />} />
+          <Route path="/admin/reset-password" element={<AdminResetPassword />} />
           <Route path="/admin" element={<Admin />} />
           
           {/* Public routes with Header/Footer */}

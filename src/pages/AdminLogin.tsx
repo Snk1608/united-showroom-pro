@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,7 +19,6 @@ const AdminLogin = () => {
       const { data, error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) throw error;
 
-      // Check admin role
       const { data: roleData, error: roleError } = await supabase.rpc("has_role", {
         _user_id: data.user.id,
         _role: "admin",
@@ -56,6 +55,17 @@ const AdminLogin = () => {
             {loading ? "Signing in..." : "Sign In"}
           </Button>
         </form>
+        <div className="mt-4 text-center space-y-2">
+          <Link to="/admin/forgot-password" className="text-sm text-primary hover:underline block">
+            Forgot Password?
+          </Link>
+          <p className="text-sm text-muted-foreground">
+            Don't have an account?{" "}
+            <Link to="/admin/signup" className="text-primary hover:underline">
+              Create Account
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );
