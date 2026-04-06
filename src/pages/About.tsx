@@ -1,9 +1,9 @@
 import { Shield, Users, Award, Clock } from "lucide-react";
 
 const stats = [
-  { icon: Clock, label: "Years of Experience", value: "15+" },
+  { icon: Clock, label: "Years of Experience", value: "60+" },
   { icon: Users, label: "Happy Customers", value: "5000+" },
-  { icon: Award, label: "Brands Partnered", value: "6+" },
+  { icon: Award, label: "Brands Partnered", value: "20+" },
   { icon: Shield, label: "Authorized Dealer", value: "Certified" },
 ];
 
@@ -41,7 +41,7 @@ const About = () => {
           <h2 className="font-heading text-3xl font-bold text-foreground mb-6">Our Story</h2>
           <div className="space-y-4 text-muted-foreground leading-relaxed">
             <p>
-              United Groups has been a cornerstone in the hardware and industrial tools industry for over 15 years.
+              United Groups has been a cornerstone in the hardware and industrial tools industry for over 60 years.
               What started as a small tools shop has grown into one of the region's most trusted authorized dealerships
               for world-class brands.
             </p>
