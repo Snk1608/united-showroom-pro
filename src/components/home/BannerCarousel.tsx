@@ -50,7 +50,7 @@ const BannerCarousel = () => {
       <div className="flex transition-transform duration-700 ease-in-out" style={{ transform: `translateX(-${current * 100}%)` }}>
         {banners.map((banner) => (
           <div key={banner.id} className="w-full flex-shrink-0 relative">
-            <img src={banner.image_url || ""} alt={banner.title} className="w-full h-[280px] sm:h-[360px] md:h-[420px] object-cover" />
+            <img src={banner.image_url || ""} alt={banner.title} className="w-full h-[280px] sm:h-[360px] md:h-[420px] object-cover object-center" />
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-foreground/80 via-foreground/40 to-transparent pt-16 pb-10">
               <div className="container">
                 <div className="max-w-lg space-y-2">
