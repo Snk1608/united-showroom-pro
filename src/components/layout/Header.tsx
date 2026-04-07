@@ -1,21 +1,25 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone } from "lucide-react";
-
-const navLinks = [
-  { to: "/", label: "Home" },
-  { to: "/about", label: "About Us" },
-  { to: "/products", label: "Products" },
-  { to: "/brands", label: "Brands" },
-  { to: "/offers", label: "Offers" },
-  { to: "/enquiry", label: "Enquiry" },
-  { to: "/contact", label: "Contact" },
-];
+import { Menu, X, Phone, Globe } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
+import { Language } from "@/i18n/translations";
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
   const location = useLocation();
+  const { t, language, setLanguage, languageNames } = useLanguage();
+
+  const navLinks = [
+    { to: "/", label: t("nav.home") },
+    { to: "/about", label: t("nav.about") },
+    { to: "/products", label: t("nav.products") },
+    { to: "/brands", label: t("nav.brands") },
+    { to: "/offers", label: t("nav.offers") },
+    { to: "/enquiry", label: t("nav.enquiry") },
+    { to: "/contact", label: t("nav.contact") },
+  ];
 
   return (
     <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border shadow-card">
@@ -23,15 +27,37 @@ const Header = () => {
       <div className="bg-primary text-primary-foreground">
         <div className="container flex items-center justify-between py-1.5 text-xs md:text-sm">
           <span className="font-heading font-semibold tracking-wide">
-            UNITED GROUPS — Authorized Dealer of BOSCH & STIHL
+            {t("header.topbar")}
           </span>
-          <a
-            href="tel:+918912562737"
-            className="hidden md:flex items-center gap-1.5 hover:opacity-80 transition-opacity"
-          >
-            <Phone className="w-3.5 h-3.5" />
-            Call Us
-          </a>
+          <div className="hidden md:flex items-center gap-3">
+            <a href="tel:+918912562737" className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
+              <Phone className="w-3.5 h-3.5" />
+              {t("header.callUs")}
+            </a>
+            {/* Language selector */}
+            <div className="relative">
+              <button
+                onClick={() => setLangOpen(!langOpen)}
+                className="flex items-center gap-1 px-2 py-0.5 rounded bg-primary-foreground/10 hover:bg-primary-foreground/20 transition-colors text-xs"
+              >
+                <Globe className="w-3 h-3" />
+                {languageNames[language]}
+              </button>
+              {langOpen && (
+                <div className="absolute right-0 top-full mt-1 bg-card border border-border rounded-lg shadow-elevated overflow-hidden z-50 min-w-[120px]">
+                  {(Object.keys(languageNames) as Language[]).map((lang) => (
+                    <button
+                      key={lang}
+                      onClick={() => { setLanguage(lang); setLangOpen(false); }}
+                      className={`block w-full text-left px-3 py-2 text-sm transition-colors ${language === lang ? "bg-primary text-primary-foreground" : "text-foreground hover:bg-muted"}`}
+                    >
+                      {languageNames[lang]}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </div>
 
@@ -42,7 +68,7 @@ const Header = () => {
             UNITED GROUPS
           </span>
           <span className="text-[10px] md:text-xs text-muted-foreground font-medium tracking-widest uppercase">
-            Hardware &amp; Tools
+            {t("header.subtitle")}
           </span>
         </Link>
 
@@ -64,11 +90,30 @@ const Header = () => {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a
-            href="https://wa.me/918912562737"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          {/* Mobile language selector */}
+          <div className="relative md:hidden">
+            <button
+              onClick={() => setLangOpen(!langOpen)}
+              className="p-2 text-foreground"
+              aria-label="Change language"
+            >
+              <Globe className="w-5 h-5" />
+            </button>
+            {langOpen && (
+              <div className="absolute right-0 top-full mt-1 bg-card border border-border rounded-lg shadow-elevated overflow-hidden z-50 min-w-[120px]">
+                {(Object.keys(languageNames) as Language[]).map((lang) => (
+                  <button
+                    key={lang}
+                    onClick={() => { setLanguage(lang); setLangOpen(false); }}
+                    className={`block w-full text-left px-3 py-2 text-sm transition-colors ${language === lang ? "bg-primary text-primary-foreground" : "text-foreground hover:bg-muted"}`}
+                  >
+                    {languageNames[lang]}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          <a href="https://wa.me/918912562737" target="_blank" rel="noopener noreferrer">
             <Button variant="whatsapp" size="sm" className="hidden md:inline-flex">
               WhatsApp
             </Button>
