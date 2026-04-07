@@ -2,10 +2,12 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const Enquiry = () => {
   const [form, setForm] = useState({ name: "", phone: "", email: "", product: "", message: "" });
   const [loading, setLoading] = useState(false);
+  const { t } = useLanguage();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -13,7 +15,7 @@ const Enquiry = () => {
     try {
       const { error } = await supabase.from("enquiries").insert(form);
       if (error) throw error;
-      toast.success("Enquiry submitted successfully! We'll get back to you soon.");
+      toast.success(t("enquiry.success"));
       setForm({ name: "", phone: "", email: "", product: "", message: "" });
     } catch (err: any) {
       toast.error(err.message || "Failed to submit enquiry");
@@ -26,8 +28,8 @@ const Enquiry = () => {
     <div>
       <section className="bg-hero-gradient py-12 md:py-16">
         <div className="container text-center">
-          <h1 className="font-heading text-4xl md:text-5xl font-bold text-primary-foreground mb-3">Send an Enquiry</h1>
-          <p className="text-primary-foreground/80">We'd love to hear from you. Fill out the form below.</p>
+          <h1 className="font-heading text-4xl md:text-5xl font-bold text-primary-foreground mb-3">{t("enquiry.title")}</h1>
+          <p className="text-primary-foreground/80">{t("enquiry.subtitle")}</p>
         </div>
       </section>
 
@@ -35,10 +37,10 @@ const Enquiry = () => {
         <div className="container max-w-2xl">
           <form onSubmit={handleSubmit} className="bg-card border border-border rounded-xl p-6 md:p-8 space-y-5 shadow-card">
             {[
-              { label: "Full Name", key: "name", type: "text", required: true },
-              { label: "Phone Number", key: "phone", type: "tel", required: true },
-              { label: "Product of Interest", key: "product", type: "text", required: true },
-              { label: "Email Address", key: "email", type: "email", required: false },
+              { label: t("enquiry.fullName"), key: "name", type: "text", required: true },
+              { label: t("enquiry.phone"), key: "phone", type: "tel", required: true },
+              { label: t("enquiry.product"), key: "product", type: "text", required: true },
+              { label: t("enquiry.email"), key: "email", type: "email", required: false },
             ].map((field) => (
               <div key={field.key}>
                 <label className="block text-sm font-medium text-foreground mb-1.5">
@@ -54,7 +56,7 @@ const Enquiry = () => {
               </div>
             ))}
             <div>
-              <label className="block text-sm font-medium text-foreground mb-1.5">Message</label>
+              <label className="block text-sm font-medium text-foreground mb-1.5">{t("enquiry.message")}</label>
               <textarea
                 rows={4}
                 value={form.message}
@@ -63,7 +65,7 @@ const Enquiry = () => {
               />
             </div>
             <Button type="submit" size="lg" className="w-full" disabled={loading}>
-              {loading ? "Submitting..." : "Submit Enquiry"}
+              {loading ? t("enquiry.submitting") : t("enquiry.submit")}
             </Button>
           </form>
         </div>

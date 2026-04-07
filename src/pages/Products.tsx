@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Search } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const categories = ["All", "Power Tools", "Hand Tools", "Outdoor Equipment", "Accessories", "Cutting Tools"];
 const brands = ["All", "BOSCH", "STIHL", "Stanley", "Black & Decker", "Makita", "MAX"];
@@ -12,6 +13,7 @@ const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedBrand, setSelectedBrand] = useState("All");
   const [search, setSearch] = useState("");
+  const { t } = useLanguage();
 
   const { data: products = [] } = useQuery({
     queryKey: ["products"],
@@ -33,8 +35,8 @@ const Products = () => {
     <div>
       <section className="bg-hero-gradient py-12 md:py-16">
         <div className="container text-center">
-          <h1 className="font-heading text-4xl md:text-5xl font-bold text-primary-foreground mb-3">Our Products</h1>
-          <p className="text-primary-foreground/80">Professional tools for every need</p>
+          <h1 className="font-heading text-4xl md:text-5xl font-bold text-primary-foreground mb-3">{t("products.title")}</h1>
+          <p className="text-primary-foreground/80">{t("products.subtitle")}</p>
         </div>
       </section>
 
@@ -43,14 +45,14 @@ const Products = () => {
           <div className="flex flex-col md:flex-row gap-4 mb-8">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <input type="text" placeholder="Search products..." value={search} onChange={(e) => setSearch(e.target.value)}
+              <input type="text" placeholder={t("products.search")} value={search} onChange={(e) => setSearch(e.target.value)}
                 className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-input bg-card text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring" />
             </div>
             <div className="flex flex-wrap gap-2">
               {categories.map((cat) => (
                 <button key={cat} onClick={() => setSelectedCategory(cat)}
                   className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${selectedCategory === cat ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-muted/80"}`}>
-                  {cat}
+                  {cat === "All" ? t("products.all") : cat}
                 </button>
               ))}
             </div>
@@ -62,7 +64,7 @@ const Products = () => {
                 className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${selectedBrand === b
                   ? b === "STIHL" ? "bg-stihl text-stihl-foreground" : "bg-accent text-accent-foreground"
                   : "bg-secondary text-secondary-foreground hover:bg-secondary/80"}`}>
-                {b}
+                {b === "All" ? t("products.all") : b}
               </button>
             ))}
           </div>
@@ -83,14 +85,14 @@ const Products = () => {
                   </span>
                   <h3 className="font-heading text-lg font-semibold text-foreground mt-2">{product.name}</h3>
                   <p className="text-muted-foreground text-sm mt-1 mb-4">{product.description}</p>
-                  <Link to="/enquiry"><Button size="sm" className="w-full">Enquire Now</Button></Link>
+                  <Link to="/enquiry"><Button size="sm" className="w-full">{t("products.enquireNow")}</Button></Link>
                 </div>
               </div>
             ))}
           </div>
 
           {filtered.length === 0 && (
-            <div className="text-center py-16 text-muted-foreground">No products found. Try adjusting your filters.</div>
+            <div className="text-center py-16 text-muted-foreground">{t("products.noProducts")}</div>
           )}
         </div>
       </section>
