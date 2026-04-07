@@ -37,11 +37,13 @@ const Enquiry = () => {
             {[
               { label: "Full Name", key: "name", type: "text", required: true },
               { label: "Phone Number", key: "phone", type: "tel", required: true },
-              { label: "Email Address", key: "email", type: "email", required: true },
-              { label: "Product of Interest", key: "product", type: "text", required: false },
+              { label: "Product of Interest", key: "product", type: "text", required: true },
+              { label: "Email Address", key: "email", type: "email", required: false },
             ].map((field) => (
               <div key={field.key}>
-                <label className="block text-sm font-medium text-foreground mb-1.5">{field.label}</label>
+                <label className="block text-sm font-medium text-foreground mb-1.5">
+                  {field.label}{field.required && <span className="text-destructive ml-0.5">*</span>}
+                </label>
                 <input
                   type={field.type}
                   required={field.required}
@@ -55,7 +57,6 @@ const Enquiry = () => {
               <label className="block text-sm font-medium text-foreground mb-1.5">Message</label>
               <textarea
                 rows={4}
-                required
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring resize-none"
