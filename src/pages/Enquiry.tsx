@@ -57,7 +57,6 @@ const Enquiry = () => {
               <label className="block text-sm font-medium text-foreground mb-1.5">Message</label>
               <textarea
                 rows={4}
-                required
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring resize-none"
