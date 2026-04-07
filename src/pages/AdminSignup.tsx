@@ -50,7 +50,7 @@ const AdminSignup = () => {
             We've sent a verification link to <strong>{email}</strong>. Please verify your email to continue.
           </p>
           <p className="text-sm text-muted-foreground mb-4">
-            Note: An admin must grant you admin access before you can use the admin panel.
+            After verifying, the Super Admin will review and approve your access.
           </p>
           <Link to="/admin/login">
             <Button variant="outline">Back to Login</Button>

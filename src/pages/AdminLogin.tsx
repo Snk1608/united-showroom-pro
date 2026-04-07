@@ -26,7 +26,7 @@ const AdminLogin = () => {
       if (roleError) throw roleError;
       if (!roleData) {
         await supabase.auth.signOut();
-        throw new Error("You do not have admin access.");
+        throw new Error("Your account is pending approval by the Super Admin. Please wait.");
       }
 
       toast.success("Welcome, Admin!");
