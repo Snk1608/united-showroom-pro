@@ -3,15 +3,16 @@ import { Navigate } from "react-router-dom";
 import { useAdmin } from "@/hooks/useAdmin";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { LogOut, LayoutDashboard, Package, Image, Tag, MessageSquare } from "lucide-react";
+import { LogOut, LayoutDashboard, Package, Image, Tag, MessageSquare, Users } from "lucide-react";
 import AdminDashboard from "@/components/admin/AdminDashboard";
 import AdminProducts from "@/components/admin/AdminProducts";
 import AdminBanners from "@/components/admin/AdminBanners";
 import AdminOffers from "@/components/admin/AdminOffers";
 import AdminEnquiries from "@/components/admin/AdminEnquiries";
+import AdminUsers from "@/components/admin/AdminUsers";
 
 const Admin = () => {
-  const { isAdmin, loading, signOut } = useAdmin();
+  const { isAdmin, isSuperAdmin, loading, signOut } = useAdmin();
   const [tab, setTab] = useState("dashboard");
 
   if (loading) return <div className="min-h-screen flex items-center justify-center text-muted-foreground">Loading...</div>;
@@ -33,12 +34,14 @@ const Admin = () => {
             <TabsTrigger value="banners"><Image className="w-4 h-4 mr-1" />Banners</TabsTrigger>
             <TabsTrigger value="offers"><Tag className="w-4 h-4 mr-1" />Offers</TabsTrigger>
             <TabsTrigger value="enquiries"><MessageSquare className="w-4 h-4 mr-1" />Enquiries</TabsTrigger>
+            {isSuperAdmin && <TabsTrigger value="users"><Users className="w-4 h-4 mr-1" />Users</TabsTrigger>}
           </TabsList>
           <TabsContent value="dashboard"><AdminDashboard /></TabsContent>
           <TabsContent value="products"><AdminProducts /></TabsContent>
           <TabsContent value="banners"><AdminBanners /></TabsContent>
           <TabsContent value="offers"><AdminOffers /></TabsContent>
           <TabsContent value="enquiries"><AdminEnquiries /></TabsContent>
+          {isSuperAdmin && <TabsContent value="users"><AdminUsers /></TabsContent>}
         </Tabs>
       </div>
     </div>
