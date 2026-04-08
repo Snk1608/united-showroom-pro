@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
+import logoHardware from "@/assets/logo-united-hardware.png";
+import logoAgencies from "@/assets/logo-united-agencies.png";
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -15,13 +17,13 @@ const Footer = () => {
             <p className="text-primary-foreground/70 text-sm mb-4">
               {t("footer.description")}
             </p>
-            <div className="flex gap-3">
-              <span className="px-2 py-1 bg-primary-foreground/10 rounded text-xs font-heading font-semibold">
-                United Hardware Corporation
-              </span>
-              <span className="px-2 py-1 bg-stihl/20 rounded text-xs font-heading font-semibold text-stihl">
-                United Agency
-              </span>
+            <div className="flex flex-col gap-3">
+              <div className="flex items-center gap-2">
+                <img src={logoHardware} alt="United Hardware Corporation" className="h-8 w-auto bg-primary-foreground/10 rounded p-1" />
+              </div>
+              <div className="flex items-center gap-2">
+                <img src={logoAgencies} alt="United Agencies" className="h-8 w-auto bg-primary-foreground/10 rounded p-1" />
+              </div>
             </div>
           </div>
 

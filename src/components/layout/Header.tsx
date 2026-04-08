@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Globe } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { Language } from "@/i18n/translations";
+import logoUnitedGroup from "@/assets/logo-united-group.png";
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -63,13 +64,16 @@ const Header = () => {
 
       {/* Main nav */}
       <div className="container flex items-center justify-between h-16">
-        <Link to="/" className="flex flex-col leading-tight">
-          <span className="font-heading text-xl md:text-2xl font-bold text-primary tracking-tight">
-            UNITED GROUPS
-          </span>
-          <span className="text-[10px] md:text-xs text-muted-foreground font-medium tracking-widest uppercase">
-            {t("header.subtitle")}
-          </span>
+        <Link to="/" className="flex items-center gap-2">
+          <img src={logoUnitedGroup} alt="United Groups Logo" className="h-10 md:h-12 w-auto" />
+          <div className="flex flex-col leading-tight">
+            <span className="font-heading text-lg md:text-2xl font-bold text-primary tracking-tight">
+              UNITED GROUPS
+            </span>
+            <span className="text-[9px] md:text-xs text-muted-foreground font-medium tracking-widest uppercase">
+              {t("header.subtitle")}
+            </span>
+          </div>
         </Link>
 
         {/* Desktop nav */}
