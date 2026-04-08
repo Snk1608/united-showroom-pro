@@ -79,6 +79,7 @@ const AdminBanners = () => {
               <Input placeholder="Title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
               <Input placeholder="Description" value={form.description || ""} onChange={(e) => setForm({ ...form, description: e.target.value })} />
               <ImageUpload value={form.image_url} onChange={(url) => setForm({ ...form, image_url: url })} folder="banners" />
+              <p className="text-xs text-muted-foreground">Recommended size: <strong>1920 × 540 px</strong> (landscape, 16:4.5 ratio). Use JPG for best quality.</p>
               <div className="grid grid-cols-2 gap-3">
                 <Input placeholder="Button Text" value={form.cta_text || ""} onChange={(e) => setForm({ ...form, cta_text: e.target.value })} />
                 <Input placeholder="Button Link" value={form.cta_link || ""} onChange={(e) => setForm({ ...form, cta_link: e.target.value })} />

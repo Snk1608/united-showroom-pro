@@ -11,9 +11,18 @@ const AdminUsers = () => {
   const { data: users = [], isLoading } = useQuery({
     queryKey: ["admin-users"],
     queryFn: async () => {
-      const { data, error } = await supabase.from("user_roles").select("*").order("created_at", { ascending: false });
+      const { data: roles, error } = await supabase.from("user_roles").select("*").order("created_at", { ascending: false });
       if (error) throw error;
-      return data;
+      
+      // Fetch profiles to get emails
+      const { data: profiles } = await supabase.from("profiles").select("user_id, email, full_name");
+      const profileMap = new Map((profiles || []).map(p => [p.user_id, p]));
+      
+      return (roles || []).map(r => ({
+        ...r,
+        email: profileMap.get(r.user_id)?.email || null,
+        full_name: profileMap.get(r.user_id)?.full_name || null,
+      }));
     },
   });
 
@@ -38,7 +47,8 @@ const AdminUsers = () => {
         {users.map((u) => (
           <div key={u.id} className="bg-card border border-border rounded-lg p-4 flex items-center justify-between">
             <div>
-              <p className="text-sm font-mono text-foreground">{u.user_id}</p>
+              <p className="text-sm font-semibold text-foreground">{u.email || "No email"}</p>
+              {u.full_name && <p className="text-xs text-muted-foreground">{u.full_name}</p>}
               <div className="flex items-center gap-2 mt-1">
                 <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${u.role === "admin" ? "bg-primary/10 text-primary" : "bg-muted text-muted-foreground"}`}>
                   {u.role}
