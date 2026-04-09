@@ -25,12 +25,21 @@ const AdminSignup = () => {
     }
     setLoading(true);
     try {
-      const { error } = await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email,
         password,
         options: { emailRedirectTo: window.location.origin + "/admin/login" },
       });
       if (error) throw error;
+
+      const identities = (data.user as { identities?: unknown[] } | null)?.identities;
+      const isExistingAccount = !data.session && Array.isArray(identities) && identities.length === 0;
+
+      if (isExistingAccount) {
+        toast.error("This email already has an account. Please sign in or use Forgot Password.");
+        return;
+      }
+
       setSent(true);
       toast.success("Account created! Check your email to verify.");
     } catch (err: any) {
