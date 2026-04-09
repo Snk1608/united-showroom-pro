@@ -5,9 +5,10 @@ import { ShieldCheck, ShieldX } from "lucide-react";
 import { toast } from "sonner";
 import { format } from "date-fns";
 
+const SUPER_ADMIN_EMAIL = "mudadlanarendra@gmail.com";
+
 const AdminUsers = () => {
   const qc = useQueryClient();
-
   const { data: users = [], isLoading } = useQuery({
     queryKey: ["admin-users"],
     queryFn: async () => {
@@ -57,7 +58,9 @@ const AdminUsers = () => {
               </div>
             </div>
             <div>
-              {u.role === "user" ? (
+              {u.email === SUPER_ADMIN_EMAIL ? (
+                <span className="text-xs font-semibold px-2 py-1 rounded-full bg-accent/20 text-accent">Super Admin</span>
+              ) : u.role === "user" ? (
                 <Button size="sm" variant="outline" onClick={() => updateRole.mutate({ id: u.id, role: "admin" })}>
                   <ShieldCheck className="w-4 h-4 mr-1" /> Approve Admin
                 </Button>

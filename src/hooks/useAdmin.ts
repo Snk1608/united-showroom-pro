@@ -19,12 +19,17 @@ export const useAdmin = () => {
         return;
       }
       setUser(session.user);
-      setIsSuperAdmin(session.user.email === SUPER_ADMIN_EMAIL);
-      const { data } = await supabase.rpc("has_role", {
-        _user_id: session.user.id,
-        _role: "admin",
-      });
-      setIsAdmin(!!data);
+      const isSuperAdminUser = session.user.email === SUPER_ADMIN_EMAIL;
+      setIsSuperAdmin(isSuperAdminUser);
+      if (isSuperAdminUser) {
+        setIsAdmin(true);
+      } else {
+        const { data } = await supabase.rpc("has_role", {
+          _user_id: session.user.id,
+          _role: "admin",
+        });
+        setIsAdmin(!!data);
+      }
       setLoading(false);
     };
 
