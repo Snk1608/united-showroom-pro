@@ -21,7 +21,7 @@ const DivisionSection = () => {
               <span className="text-xs font-heading tracking-widest uppercase opacity-80">{t("divisions.division1")}</span>
               <div className="flex items-center gap-3 mt-2 mb-3">
                 <img src={logoHardware} alt="United Hardware Corporation" className="h-10 md:h-12 w-auto bg-primary-foreground/10 rounded p-1" />
-                <h3 className="font-heading text-2xl md:text-3xl font-bold">United Hardware Corporation</h3>
+                <h3 className="font-heading text-2xl md:text-3xl font-bold">{"\n"}</h3>
               </div>
               <p className="text-primary-foreground/80 text-sm mb-6">{t("divisions.uhcDesc")}</p>
               <div className="flex flex-wrap gap-2 mb-6">
@@ -39,7 +39,7 @@ const DivisionSection = () => {
               <span className="text-xs font-heading tracking-widest uppercase opacity-80">{t("divisions.division2")}</span>
               <div className="flex items-center gap-3 mt-2 mb-3">
                 <img src={logoAgencies} alt="United Agency" className="h-10 md:h-12 w-auto bg-stihl-foreground/10 rounded p-1" />
-                <h3 className="font-heading text-2xl md:text-3xl font-bold">United Agency</h3>
+                <h3 className="font-heading text-2xl md:text-3xl font-bold">{"\n"}</h3>
               </div>
               <p className="text-stihl-foreground/80 text-sm mb-6">{t("divisions.uaDesc")}</p>
               <div className="flex flex-wrap gap-2 mb-6">
