@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
+import logoHardware from "@/assets/logo-united-hardware.png";
+import logoAgencies from "@/assets/logo-united-agencies.png";
 
 const DivisionSection = () => {
   const { t } = useLanguage();
@@ -17,7 +19,10 @@ const DivisionSection = () => {
           <div className="relative overflow-hidden rounded-xl bg-hero-gradient p-8 md:p-10 text-primary-foreground">
             <div className="relative z-10">
               <span className="text-xs font-heading tracking-widest uppercase opacity-80">{t("divisions.division1")}</span>
-              <h3 className="font-heading text-2xl md:text-3xl font-bold mt-2 mb-3">United Hardware Corporation</h3>
+              <div className="flex items-center gap-3 mt-2 mb-3">
+                <img src={logoHardware} alt="United Hardware Corporation" className="h-10 md:h-12 w-auto bg-primary-foreground/10 rounded p-1" />
+                <h3 className="font-heading text-2xl md:text-3xl font-bold">United Hardware Corporation</h3>
+              </div>
               <p className="text-primary-foreground/80 text-sm mb-6">{t("divisions.uhcDesc")}</p>
               <div className="flex flex-wrap gap-2 mb-6">
                 {["BOSCH", "Stanley", "Makita", "MAX"].map((b) => (
@@ -32,7 +37,10 @@ const DivisionSection = () => {
           <div className="relative overflow-hidden rounded-xl bg-stihl-gradient p-8 md:p-10 text-stihl-foreground">
             <div className="relative z-10">
               <span className="text-xs font-heading tracking-widest uppercase opacity-80">{t("divisions.division2")}</span>
-              <h3 className="font-heading text-2xl md:text-3xl font-bold mt-2 mb-3">United Agency</h3>
+              <div className="flex items-center gap-3 mt-2 mb-3">
+                <img src={logoAgencies} alt="United Agency" className="h-10 md:h-12 w-auto bg-stihl-foreground/10 rounded p-1" />
+                <h3 className="font-heading text-2xl md:text-3xl font-bold">United Agency</h3>
+              </div>
               <p className="text-stihl-foreground/80 text-sm mb-6">{t("divisions.uaDesc")}</p>
               <div className="flex flex-wrap gap-2 mb-6">
                 <span className="px-3 py-1 bg-stihl-foreground/15 rounded-full text-xs font-semibold">STIHL</span>
