@@ -19,14 +19,17 @@ const AdminLogin = () => {
       const { data, error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) throw error;
 
-      const { data: roleData, error: roleError } = await supabase.rpc("has_role", {
-        _user_id: data.user.id,
-        _role: "admin",
-      });
-      if (roleError) throw roleError;
-      if (!roleData) {
-        await supabase.auth.signOut();
-        throw new Error("Your account is pending approval by the Super Admin. Please wait.");
+      const SUPER_ADMIN_EMAIL = "mudadlanarendra@gmail.com";
+      if (data.user.email !== SUPER_ADMIN_EMAIL) {
+        const { data: roleData, error: roleError } = await supabase.rpc("has_role", {
+          _user_id: data.user.id,
+          _role: "admin",
+        });
+        if (roleError) throw roleError;
+        if (!roleData) {
+          await supabase.auth.signOut();
+          throw new Error("Your account is pending approval by the Super Admin. Please wait.");
+        }
       }
 
       toast.success("Welcome, Admin!");
